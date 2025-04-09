@@ -1,26 +1,28 @@
-/*import sql from 'mssql';
+import sql from 'mssql';
 
-const config: sql.config = {
-  user: 'TU_USUARIO_SQL',
-  password: 'TU_CONTRASEÑA_SQL',
-  server: 'localhost', // o la IP si está en otro equipo
-  database: 'TU_BASE_DE_DATOS',
+// Configuración de la base de datos
+const config = {
+  user: 'MARIANA',        // Nombre de usuario de la base de datos
+// Contraseña de la base de datos
+  server: 'MARIANA',       // Dirección del servidor (puede ser una IP o 'localhost')
+  database: 'EcomerceProyecto', // Nombre de la base de datos
   options: {
-    encrypt: false, // Pon true si estás usando Azure
-    trustServerCertificate: true // Importante para conexiones locales
+    encrypt: true,           // Si es necesario para tu configuración
+   // trustServerCertificate: true // Si usas certificados de seguridad
   }
 };
 
-export const connectToDB = async () => {
+// Función para conectar a la base de datos
+export async function connectToDatabase() {
   try {
     const pool = await sql.connect(config);
-    console.log('✅ Conexión a la base de datos exitosa');
-    return pool;
-  } catch (error) {
-    console.error('❌ Error al conectar a la base de datos:', error);
-    throw error;
+    console.log("Conectado a la base de datos");
+    return pool; // Devolver el pool de conexión para usarlo en otras consultas
+  } catch (err) {
+    console.error("Error de conexión a la base de datos:", err);
+    throw err; // Lanzar el error si ocurre uno
   }
-};
+}
 
-export default sql;
-*/
+// Exportar la instancia de sql para usar en otras partes del proyecto
+export { sql };
